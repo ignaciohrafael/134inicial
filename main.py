@@ -18,3 +18,4 @@ if __name__ == '__main__':
     resultado = somar(1, 1)
     print(f"A soma : {resultado}")
 
+# Escrevi isso no Github
