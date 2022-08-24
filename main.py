@@ -21,3 +21,5 @@ if __name__ == '__main__':
 # Escrevi isso no Github
 
 # Eu vi
+
+# De novo
