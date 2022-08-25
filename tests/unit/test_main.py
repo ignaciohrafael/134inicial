@@ -1,6 +1,23 @@
+import csv
+
 import pytest
 
 from main import somar, dividir
+
+def ler_csv(arquivo_csv):
+    dados_csv = []
+    try:
+        with open(arquivo_csv, newline='') as massa:
+            campos = csv.reader(massa, delimiter=',')
+            next(campos)
+            for linha in campos:
+                dados_csv.append(linha)
+        return dados_csv
+    except FileNotFoundError:
+        print(f'Arquivo não encontrado: {arquivo_csv}')
+    except Exception as fail:
+        print(f'Falha imprevista: {fail}')
+        print(f'Oi, {fail}')
 
 def test_somar():
     # 1 - Configure
@@ -62,3 +79,14 @@ def test_somar_leitura_de_lista(num_a, num_b, resultado_esperado):
 
         # 3 - Validate
         assert resultado_obtido == resultado_esperado
+
+@pytest.mark.parametrize('num_a, num_b, resultado_esperado',ler_csv('C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\csv\\massa_teste_somar_positivo.csv'))
+def test_somar_leitura_de_csv(num_a, num_b, resultado_esperado):
+        # 1 - Configure
+        # Utilizamos a lista como massa de teste
+
+        # 2 - Execute
+        resultado_obtido = somar(int(num_a), int(num_b))
+
+        # 3 - Validate
+        assert resultado_obtido == int(resultado_esperado)
