@@ -12,6 +12,9 @@ def dividir(num1, num2):
     except ZeroDivisionError:
         return 'Não dividiras por zero'
 
+def subtrair(num1, num2):
+    return num1 - num2
+
 if __name__ == '__main__':
     print_hi('PyCharm')
 
