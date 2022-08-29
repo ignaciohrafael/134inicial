@@ -105,3 +105,31 @@ def test_alterar_pet():
     assert corpo_do_resultado_obtido['category']['name'] == pet_nome_categoria_esperado
     assert corpo_do_resultado_obtido['tags'][0]['name'] == pet_nome_tag_esperado
     assert corpo_do_resultado_obtido['status'] == pet_status
+
+
+def test_excluir_pet():
+    # Configure
+    # Dados de entrada
+    pet_id = '4358369'
+
+    # Resultados esperados
+    status_code_esperado = 200
+    type_esperado = 'unknown'
+    mensagem_esperada = '4358369'
+
+    # Execute
+    resultado_obtido = requests.delete(
+        url=url + '/' + pet_id,
+        headers=headers
+
+    )
+
+    # Check
+    print(resultado_obtido)
+    corpo_do_resultado_obtido = resultado_obtido.json()
+    print(corpo_do_resultado_obtido)
+
+    assert resultado_obtido.status_code == status_code_esperado
+    assert corpo_do_resultado_obtido['code'] == status_code_esperado
+    assert corpo_do_resultado_obtido['type'] == type_esperado
+    assert corpo_do_resultado_obtido['message'] == mensagem_esperada
