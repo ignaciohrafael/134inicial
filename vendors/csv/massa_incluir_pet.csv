@@ -1,0 +1,5 @@
+pet_id,category_id,category_name,pet_name,tags_id,tags_name,status
+436901,1,cachorro,Scooby,1,vacinado,available
+436902,2,gato,Garfield,2,castrado,available
+436903,3,peixe,Nemo,3,registrado,available
+436904,2,gato,Bichento,1,vacinado,available

@@ -4,7 +4,6 @@ import pytest
 
 from main import somar, dividir, subtrair
 
-
 def ler_csv(arquivo_csv):
     dados_csv = []
     try:
