@@ -1,13 +1,23 @@
 # ToDo: 3 - criar uma venda de um pet para um usuário
 # ToDo: 4 - Consultar os dados do pet que foi vendido
+import os
+
 import requests
 
-url = 'https://petstore.swagger.io/v2/store/order'
+url = 'https://petstore.swagger.io/v2/'
 headers = {'Content-Type': 'application/json'}
+
 def test_vender_pet():
     #Configura
     #Dados de entrada
     #virão do arquivo pedido1.json
+    #root_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    #file_dir = os.path.join(root_dir, 'vendors', 'json', 'pedido1.json')
+    root_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    file_dir = os.path.join(root_dir, 'vendors', 'json', 'pedido1.json')
+    #https://towardsdatascience.com/simple-trick-to-work-with-relative-paths-in-python-c072cdc9acb9
+
+    #pode ser feito como: caminho = os.path.abspath(__file__ + "/../../../") + os.sep + 'vendors' + os.sep + 'json' + os.sep
 
     # Resultados esperados
     status_code_esperado = 200
@@ -17,9 +27,9 @@ def test_vender_pet():
 
     #Executa
     resultado_obtido = requests.post(
-        url=url,
+        url=url + 'store/order',
         headers=headers,
-        data=open('C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\json\\pedido1.json')
+        data=open(file_dir)
     )
     #Valida
     print(resultado_obtido)
@@ -30,3 +40,27 @@ def test_vender_pet():
     assert corpo_do_resultado_obtido['id'] == pedido_id_esperado
     assert corpo_do_resultado_obtido['petId'] == pet_id_esperado
     assert corpo_do_resultado_obtido['status'] == status_pedido_esperado
+
+    #Extrai
+    pet_id_extraido = corpo_do_resultado_obtido.get('petId')
+
+    #Realizar a 2² transação
+
+    #Configura
+    #Dados de entrada
+    #Extraidos da 1² transição acima
+
+    #Resultados esperados
+    pet_name_esperado = 'Snoopy'
+    status_code_esperado = 200
+
+    #Executa
+    resultado_obtido = requests.get(
+        url=url + 'pet/' + str(pet_id_extraido),
+        headers=headers
+    )
+
+    #Valida
+    assert resultado_obtido.status_code == status_code_esperado
+    corpo_do_resultado_obtido = resultado_obtido.json()
+    assert corpo_do_resultado_obtido['name'] == pet_name_esperado
