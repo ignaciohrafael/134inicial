@@ -31,3 +31,15 @@ class TestCompradePassagem:
         self.driver.find_element(By.ID, "rememberMe").click()
         self.driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
         assert self.driver.find_element(By.CSS_SELECTOR, "h1").text == "Thank you for your purchase today!"
+
+    def test_login(self):
+        self.driver.get("https://www.blazedemo.com/")
+        self.driver.set_window_size(1346, 748)
+        self.driver.find_element(By.LINK_TEXT, "home").click()
+        self.driver.find_element(By.ID, "email").click()
+        self.driver.find_element(By.ID, "email").send_keys("rafael.t@mail.com")
+        self.driver.find_element(By.ID, "password").click()
+        self.driver.find_element(By.ID, "password").send_keys("12345")
+        self.driver.find_element(By.NAME, "remember").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
+        self.driver.close()
