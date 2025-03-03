@@ -4,6 +4,7 @@ import pytest
 
 from main import somar, dividir, subtrair
 
+# função de leitura de csv
 def ler_csv(arquivo_csv):
     dados_csv = []
     try:
@@ -88,7 +89,7 @@ def test_somar_leitura_de_lista(num_a, num_b, resultado_esperado):
         # 3 - Validate
         assert resultado_obtido == resultado_esperado
 
-@pytest.mark.parametrize('num_a, num_b, resultado_esperado',ler_csv('C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\csv\\massa_teste_somar_positivo.csv'))
+@pytest.mark.parametrize('num_a, num_b, resultado_esperado',ler_csv('C:\\Users\\rigna\\PycharmProjects\\134inicial\\vendors\\csv\\massa_teste_somar_positivo.csv'))
 def test_somar_leitura_de_csv(num_a, num_b, resultado_esperado):
         # 1 - Configure
         # Utilizamos a lista como massa de teste
@@ -106,7 +107,7 @@ def test_subtrair_leitura_de_lista(num_a, num_b, resultado_esperado):
 
         assert resultado_obtido == int(resultado_esperado)
 
-@pytest.mark.parametrize('num_a, num_b, resultado_esperado', ler_csv('C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\csv\\massa_teste_subtrair_positivo.csv'))
+@pytest.mark.parametrize('num_a, num_b, resultado_esperado', ler_csv('C:\\Users\\rigna\\PycharmProjects\\134inicial\\vendors\\csv\\massa_teste_subtrair_positivo.csv'))
 def test_subtrair_leitura_de_csv(num_a, num_b, resultado_esperado):
 
         resultado_obtido = subtrair(int(num_a), int(num_b))

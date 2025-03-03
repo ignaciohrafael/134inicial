@@ -31,9 +31,7 @@ class Testes:
     def setup_method(self):
         # instanciar a biblioteca / motor / engine
         # informar onde esta o WebDriver
-        self.driver = webdriver.Chrome(
-            'C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\drivers\\chromedriver105.exe'
-        )
+        self.driver = webdriver.Chrome()
 
     # Fim
     def teardown_method(self):
