@@ -12,6 +12,8 @@ def test_incluir_usuario():
     #Configura
     #Dados de Entrada
     #Virão do arquivo usuario1.json
+    with open('C:\\Users\\rigna\\PycharmProjects\\134inicial\\vendors\\json\\usuario1.json', 'r') as file:
+        data = file.read()
 
     #Resultados esperados
     status_code_esperado = 200
@@ -23,7 +25,7 @@ def test_incluir_usuario():
     resultado_obtido = requests.post(
         url=url,
         headers=headers,
-        data=open('C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\json\\usuario1.json')
+        data=data
     )
 
     #Check

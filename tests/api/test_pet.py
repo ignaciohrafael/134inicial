@@ -16,6 +16,8 @@ headers = {'Content-Type': 'application/json'}
 def test_incluir_pet():
     #Configure
     #Dados de entrada provém do pet1.json
+    with open('C:\\Users\\rigna\\PycharmProjects\\134inicial\\vendors\\json\\pet1.json', 'r') as file:
+        data = file.read()
 
     #Resultados esperados
     status_code_esperado = 200
@@ -29,7 +31,7 @@ def test_incluir_pet():
     resultado_obtido = requests.post(
         url=url,
         headers=headers,
-        data=open('C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\json\\pet1.json')
+        data=data
     )
 
     #Check
@@ -73,7 +75,8 @@ def test_consultar_pet():
 def test_alterar_pet():
     # Configure
     # Dados de entrada do pet2.json
-
+    with open('C:\\Users\\rigna\\PycharmProjects\\134inicial\\vendors\\json\\pet2.json', 'r') as file:
+        data = file.read()
     # Resultados esperados
     '''
     status_code_esperado = 200
@@ -91,7 +94,7 @@ def test_alterar_pet():
     resultado_obtido = requests.put(
         url=url,
         headers=headers,
-        data=open('C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\json\\pet2.json')
+        data=data
     )
     # Check
     print(resultado_obtido)
@@ -139,7 +142,7 @@ def test_excluir_pet():
     assert corpo_do_resultado_obtido['message'] == mensagem_esperada
 
 
-@pytest.mark.parametrize('pet_id,category_id,category_name,pet_name,tags_id,tags_name,status', ler_csv('C:\\Users\\RafaelPx\\PycharmProjects\\134inicial\\vendors\\csv\\massa_incluir_pet.csv'))
+@pytest.mark.parametrize('pet_id,category_id,category_name,pet_name,tags_id,tags_name,status', ler_csv('C:\\Users\\rigna\\PycharmProjects\\134inicial\\vendors\\csv\\massa_incluir_pet.csv'))
 def test_incluir_pet_em_massa(pet_id, category_id, category_name, pet_name, tags_id, tags_name, status):
     #Configure
     #Dados de entrada
